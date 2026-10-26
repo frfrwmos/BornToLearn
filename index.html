@@ -1630,6 +1630,211 @@ body.exam-open .drawer{display:none !important}
 body.exam-open #shell,
 body.exam-open #foot{display:none !important}
 @media (prefers-reduced-motion:reduce){.view.on{animation:none}}
+
+/* ---------- SAT question bank ---------- */
+.qb-page{padding-top:34px;padding-bottom:90px}
+.qb-h1{display:flex;align-items:center;gap:14px}
+.qb-h1 svg{width:36px;height:36px;color:var(--ink-35);flex:none}
+.qb-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:20px}
+.qb-card{position:relative;overflow:hidden;border-radius:22px;padding:28px 30px;min-height:250px;color:#fff;
+  display:flex;flex-direction:column;isolation:isolate;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.qb-card:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(10,10,11,.16)}
+.qb-card.rw{background:linear-gradient(135deg,#0A0A0B 0%,#2A2C33 100%)}
+.qb-card.math{background:linear-gradient(135deg,#29C5F6 0%,#0A7CA5 100%)}
+.qb-card h3{font-size:27px;letter-spacing:-.025em;color:#fff}
+.qb-art{position:absolute;right:0;top:0;bottom:0;width:50%;z-index:-1;pointer-events:none}
+.qb-art svg{width:100%;height:100%}
+.qb-stat{display:flex;justify-content:space-between;gap:12px;max-width:min(330px,52%);margin-top:18px;font-size:15px}
+.qb-stat span{opacity:.9}
+.qb-bar{height:8px;border-radius:99px;background:rgba(255,255,255,.22);max-width:min(330px,52%);margin-top:10px;overflow:hidden}
+.qb-bar i{display:block;height:100%;border-radius:99px;background:#fff;transition:width .6s var(--ease)}
+.qb-card.rw .qb-bar i{background:var(--star)}
+.qb-mix{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px;max-width:56%}
+.qb-mix span{font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(255,255,255,.14)}
+.qb-open{margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--ink);
+  font-weight:600;padding:10px 18px 10px 22px;border-radius:999px;font-size:15.5px;transition:transform .2s var(--ease)}
+.qb-open svg{width:16px;height:16px}
+.qb-card:hover .qb-open{transform:translateX(3px)}
+.qb-cards .qb-open{margin-top:26px}
+
+.qb-narrow{max-width:900px}
+.qb-top{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.qb-filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.qb-dd{position:relative}
+.qb-ddbtn{font:inherit;font-size:14px;display:inline-flex;gap:7px;align-items:center;padding:8px 13px;border-radius:10px;
+  border:1.5px solid var(--line);background:#fff;color:var(--ink-70);cursor:pointer}
+.qb-ddbtn svg{width:15px;height:15px}
+.qb-ddbtn:hover{border-color:var(--ink-35)}
+.qb-ddbtn.act{border-color:var(--ink);color:var(--ink)}
+.qb-ddmenu{display:none;position:absolute;top:calc(100% + 6px);left:0;z-index:40;background:#fff;border:1.5px solid var(--line);
+  border-radius:12px;padding:6px;min-width:230px;box-shadow:0 14px 34px rgba(10,10,11,.13)}
+.qb-dd.open .qb-ddmenu{display:block}
+.qb-ddmenu label{display:flex;gap:10px;align-items:center;padding:8px 10px;border-radius:8px;cursor:pointer;font-size:14.5px;white-space:nowrap}
+.qb-ddmenu label:hover{background:var(--mist)}
+.qb-ddmenu input{width:16px;height:16px;accent-color:var(--cyan-deep);margin:0}
+.qb-dot{width:9px;height:9px;border-radius:50%;flex:none}
+.qb-dot.easy{background:#1E9E63}.qb-dot.medium{background:#E0A800}.qb-dot.hard{background:#D8442F}
+.qb-all{margin-top:18px;display:flex;justify-content:space-between;align-items:center;gap:16px;background:#fff;
+  border:1.5px solid var(--line);border-radius:16px;padding:18px 20px}
+.qb-all b{font-size:17px;font-weight:700}
+.qb-all small{display:block;color:var(--ink-60);font-size:14px;margin-top:2px}
+.qb-start{font:inherit;font-weight:600;font-size:15px;padding:10px 20px;border-radius:999px;border:0;background:var(--cyan);
+  color:#04303F;cursor:pointer;white-space:nowrap;transition:transform .15s}
+.qb-start:hover{transform:translateY(-1px)}
+.qb-start:disabled{opacity:.4;cursor:default;transform:none}
+.qb-list{margin-top:22px;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:4px 22px 12px}
+.qb-lhead,.qb-row{display:grid;grid-template-columns:1fr 210px;gap:14px;align-items:center}
+.qb-lhead{padding:13px 0;border-bottom:1.5px solid var(--line);font-size:13px;color:var(--ink-35)}
+.qb-dom{padding:18px 0 8px;border-bottom:1px solid var(--line)}
+.qb-dom:last-child{border-bottom:0}
+.qb-dom h4{font-size:19px;letter-spacing:-.02em;margin-bottom:8px;display:inline-flex;gap:10px;align-items:center;cursor:pointer}
+.qb-dom h4 small{font-family:"Instrument Sans",sans-serif;font-weight:500;font-size:13px;color:var(--ink-35);letter-spacing:0}
+.qb-row{padding:6px 0}
+.qb-row label{display:flex;gap:12px;align-items:center;cursor:pointer;font-size:15px;min-width:0}
+.qb-row input{width:18px;height:18px;accent-color:var(--cyan-deep);flex:none;margin:0}
+.qb-row.off{opacity:.45}
+.qb-prog{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--ink-60);font-family:"JetBrains Mono",monospace}
+.qb-prog .b{flex:1;height:6px;border-radius:99px;background:#E9EDF1;overflow:hidden}
+.qb-prog .b i{display:block;height:100%;background:var(--ok);border-radius:99px}
+.qb-prog em{font-style:normal;min-width:62px;text-align:right}
+.qb-wait{padding:30px 0;text-align:center;color:var(--ink-35)}
+.qb-err{padding:26px;text-align:center}
+.qb-err h4{font-size:19px;margin-bottom:6px}
+.qb-err p{color:var(--ink-60)}
+@media (max-width:640px){.qb-lhead,.qb-row{grid-template-columns:1fr 112px}.qb-prog .b{display:none}.qb-all{flex-direction:column;align-items:stretch}}
+
+/* practice screen */
+body.qb-lock{overflow:hidden}
+body.qb-lock #v-qbank{animation:none !important;transform:none !important}
+body.qb-lock .hdr,body.qb-lock .ftr,body.qb-lock .drawer,body.qb-lock #shell,body.qb-lock #foot{display:none !important}
+.qbx{position:fixed;inset:0;z-index:200;background:#fff;display:flex;flex-direction:column;color:var(--ink)}
+.qbx-top{flex:none;display:flex;align-items:center;gap:14px;padding:11px max(18px,env(safe-area-inset-right,0px)) 11px max(18px,env(safe-area-inset-left,0px));
+  border-bottom:1.5px solid var(--line);padding-top:max(11px,env(safe-area-inset-top,0px))}
+.qbx-back{font:inherit;font-size:14.5px;border:0;background:none;cursor:pointer;color:var(--ink-60);display:inline-flex;gap:6px;align-items:center;padding:6px 4px}
+.qbx-back:hover{color:var(--ink)}
+.qbx-back svg{width:16px;height:16px}
+.qbx-title{flex:1;min-width:0;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:16px;letter-spacing:-.02em;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.qbx-title span{color:var(--ink-35);font-weight:600}
+.qbx-tool{display:inline-flex;align-items:center;gap:7px;font:inherit;font-size:14px;padding:7px 13px;border-radius:10px;
+  border:1.5px solid var(--line);background:#fff;cursor:pointer;color:var(--ink-70)}
+.qbx-tool svg{width:16px;height:16px}
+.qbx-tool.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.qbx-body{flex:1;min-height:0;display:flex;position:relative}
+.qbx-left,.qbx-right{overflow-y:auto;padding:30px 34px 44px;flex:1 1 50%;min-width:0}
+.qbx-split{flex:none;width:3px;background:#D6DDE6;position:relative}
+.qbx-split::after{content:"";position:absolute;top:50%;left:50%;width:10px;height:30px;transform:translate(-50%,-50%);border-radius:4px;background:var(--ink-35)}
+.qbx-body.single .qbx-left,.qbx-body.single .qbx-split{display:none}
+.qbx-body.single .qbx-right{flex:1 1 auto}
+.qbx-body.single .qbx-in{max-width:780px;margin:0 auto}
+.qbx-stim{font-size:17px;line-height:1.65;max-width:44em}
+.qbx-stim b{font-weight:600}
+.qbx-mstim{margin-top:20px;font-size:17px;line-height:1.6}
+.qbx-stim table,.qbx-mstim table,.qbx-qtext table,.qbx-opt table,.sat-stim table{border-collapse:collapse;margin:12px 0;font-size:15px;line-height:1.4}
+.qbx-stim th,.qbx-stim td,.qbx-mstim th,.qbx-mstim td,.qbx-opt th,.qbx-opt td,.sat-stim th,.sat-stim td{border:1px solid #9AA4B0;padding:6px 10px;text-align:center}
+.qbx-stim th,.qbx-mstim th,.sat-stim th{background:#F1F4F8;font-weight:600}
+.qbx-qhead{display:flex;align-items:center;gap:10px;background:#F1F4F8;border-radius:8px;padding:7px 10px;flex-wrap:wrap}
+.qbx-qn{display:grid;place-items:center;min-width:34px;height:34px;padding:0 6px;border-radius:6px;background:var(--ink);color:#fff;font-weight:700;font-size:15px}
+.qbx-mark{display:inline-flex;align-items:center;gap:7px;font:inherit;font-size:14.5px;font-weight:500;border:0;background:none;color:inherit;cursor:pointer;padding:5px}
+.qbx-mark svg{width:16px;height:16px}
+.qbx-mark.on{color:#C25E00}
+.qbx-mark.on svg{fill:currentColor}
+.qbx-lvl{font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;text-transform:capitalize}
+.lv-easy{background:#E3F6EC;color:#14794A}.lv-medium{background:var(--star-wash);color:var(--star-deep)}.lv-hard{background:#FDE7E3;color:#B5321F}
+.qbx-src{margin-left:auto;font-size:12.5px;color:var(--ink-35);white-space:nowrap}
+.qbx-qtext{margin-top:20px;font-size:17px;line-height:1.55;font-weight:500}
+.qbx-opts{margin-top:20px;display:flex;flex-direction:column;gap:12px}
+.qbx-row{display:flex;align-items:center;gap:10px}
+.qbx-opt{flex:1;min-width:0;display:flex;align-items:center;gap:14px;text-align:left;font:inherit;font-size:16px;line-height:1.5;padding:13px 14px 13px 15px;
+  border:1.5px solid #C7D2E0;border-radius:12px;background:#fff;color:inherit;cursor:pointer;transition:border-color .14s,background .14s,box-shadow .14s}
+.qbx-opt:hover{border-color:var(--cyan)}
+.qbx-opt.sel{border-color:var(--cyan);box-shadow:0 0 0 1.5px var(--cyan)}
+.qbx-opt.ok{border-color:var(--ok);background:#EFF9F3;box-shadow:0 0 0 1.5px var(--ok)}
+.qbx-opt.bad{border-color:var(--bad);background:#FFF2EF}
+.qbx-opt.lock{cursor:default}
+.qbx-opt.out .qbx-otext{text-decoration:line-through;opacity:.42}
+.qbx-letter{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;flex:none;border:1.5px solid currentColor;font-size:14px;font-weight:600}
+.qbx-opt.sel .qbx-letter{background:var(--cyan);border-color:var(--cyan);color:#fff}
+.qbx-opt.ok .qbx-letter{background:var(--ok);border-color:var(--ok);color:#fff}
+.qbx-opt.bad .qbx-letter{background:var(--bad);border-color:var(--bad);color:#fff}
+.qbx-otext{flex:1;min-width:0;overflow-x:auto}
+.qbx-otext img{display:inline-block !important;margin:0 !important}
+.qbx-check{flex:none;font:inherit;font-weight:600;font-size:15px;padding:9px 18px;border-radius:12px;border:0;background:var(--cyan);color:#fff;cursor:pointer;
+  animation:qbpop .22s var(--spring)}
+.qbx-check:hover{background:#12AEE0}
+@keyframes qbpop{from{transform:scale(.7);opacity:0}to{transform:none;opacity:1}}
+.qbx-strike{flex:none;position:relative;width:30px;height:30px;border-radius:50%;border:1.5px solid var(--ink);background:#fff;color:var(--ink);
+  font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;padding:0}
+.qbx-strike::after{content:"";position:absolute;left:-6px;right:-6px;top:50%;height:1.5px;background:currentColor}
+.qbx-strike.on{background:var(--ink);color:#fff}
+.qbx-strike.on::after{background:var(--ink)}
+.qbx-spr{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.qbx-spr input{font:inherit;font-size:20px;font-weight:600;font-family:"JetBrains Mono",monospace;padding:11px 14px;border-radius:12px;
+  border:1.5px solid #C7D2E0;width:min(260px,100%);outline:none}
+.qbx-spr input:focus{border-color:var(--cyan);box-shadow:0 0 0 1.5px var(--cyan)}
+.qbx-spr input.ok{border-color:var(--ok);background:#EFF9F3}
+.qbx-spr input.bad{border-color:var(--bad);background:#FFF2EF}
+.qbx-sprnote{width:100%;font-size:13.5px;color:var(--ink-35)}
+.qbx-fb{margin-top:22px;border-radius:14px;padding:18px 20px;border:1.5px solid var(--line);background:var(--mist);animation:qbfade .25s var(--ease)}
+@keyframes qbfade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.qbx-fb.ok{border-color:#BFE6D1;background:#F3FBF6}
+.qbx-fb.bad{border-color:#F4CBC3;background:#FFF6F4}
+.qbx-fb h5{font-family:"Bricolage Grotesque",sans-serif;font-size:17px;font-weight:800;letter-spacing:-.02em;margin:0 0 8px;display:flex;gap:8px;align-items:center}
+.qbx-fb.ok h5{color:#14794A}.qbx-fb.bad h5{color:#B5321F}
+.qbx-fb p{font-size:15.5px;line-height:1.62;color:var(--ink-70)}
+.qbx-fb ul{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:7px}
+.qbx-fb li{font-size:14.5px;line-height:1.55;color:var(--ink-60)}
+.qbx-fb li b{color:var(--ink-70)}
+.qbx-link{font:inherit;font-size:15px;font-weight:600;border:0;background:none;color:var(--cyan-deep);cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px}
+.qbx-bot{flex:none;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;
+  padding:11px max(18px,env(safe-area-inset-right,0px)) max(11px,env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px));border-top:1.5px solid var(--line);background:#fff}
+.qbx-bank{justify-self:start;display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:14.5px;font-weight:600;padding:9px 15px;
+  border-radius:999px;border:1.5px solid var(--line);background:#fff;cursor:pointer}
+.qbx-bank svg{width:16px;height:16px}
+.qbx-bank.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.qbx-pos{font-size:14.5px;color:var(--ink-60);font-family:"JetBrains Mono",monospace}
+.qbx-nav{justify-self:end;display:flex;gap:9px}
+.qbx-btn{font:inherit;font-weight:600;font-size:15px;padding:9px 22px;border-radius:999px;border:1.5px solid #C7D2E0;background:#fff;cursor:pointer;color:var(--ink)}
+.qbx-btn.pri{background:var(--cyan);border-color:var(--cyan);color:#04303F}
+.qbx-btn:disabled{opacity:.35;cursor:default}
+.qbp{position:absolute;left:16px;bottom:14px;z-index:30;width:min(450px,calc(100vw - 32px));max-height:calc(100% - 28px);display:flex;flex-direction:column;
+  background:#fff;border:1.5px solid var(--line);border-radius:18px;box-shadow:0 22px 54px rgba(10,10,11,.2);padding:18px 18px 12px;animation:qbfade .2s var(--ease)}
+.qbp-head{display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1.5px solid var(--line)}
+.qbp-head b{font-family:"Bricolage Grotesque",sans-serif;font-size:19px;letter-spacing:-.02em;margin-right:auto}
+.qbp-grp{display:inline-flex;align-items:center;gap:7px;font:inherit;font-size:13.5px;padding:7px 13px;border:1.5px solid var(--line);border-radius:999px;background:#fff;cursor:pointer;color:var(--ink-70)}
+.qbp-grp svg{width:14px;height:14px}
+.qbp-grp.on{border-color:var(--ink);color:var(--ink)}
+.qbp-x{border:0;background:none;font-size:24px;line-height:1;cursor:pointer;color:var(--ink-35);padding:2px 4px}
+.qbp-key{display:flex;flex-wrap:wrap;gap:8px 16px;padding:12px 2px 6px;font-size:13.5px;color:var(--ink-60)}
+.qbp-key span{display:inline-flex;gap:6px;align-items:center}
+.qbp-grid{overflow-y:auto;display:grid;grid-template-columns:repeat(6,1fr);gap:10px;padding:10px 6px 6px}
+.qbp-sub{grid-column:1/-1;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-35);margin-top:4px}
+.qbp-q{position:relative;height:44px;border-radius:10px;border:0;font:inherit;font-weight:600;font-size:15px;cursor:pointer;transition:transform .12s}
+.qbp-q:hover{transform:translateY(-1px)}
+.qbp-q.easy{background:#E3F6EC;color:#14794A}.qbp-q.medium{background:var(--star-wash);color:var(--star-deep)}.qbp-q.hard{background:#FDE7E3;color:#B5321F}
+.qbp-q.cur{outline:2.5px solid var(--ink);outline-offset:2px}
+.qbp-ic{position:absolute;top:-6px;right:-6px;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;color:#fff;font-style:normal;font-size:10px;font-weight:800;border:2px solid #fff;box-sizing:content-box}
+.qbp-ic.ok{background:var(--ok)}.qbp-ic.bad{background:var(--bad)}.qbp-ic.retry{background:#E8890C}
+.qbp-rv{position:absolute;top:-5px;left:-3px;width:10px;height:14px;color:#C25E00}
+.qbp-ic svg,.qbp-key svg{width:10px;height:10px}
+.qbp-key .qbp-ic{position:static;border:0}
+.qbp-key .qbp-rv{position:static;width:11px;height:15px}
+.qbx-wait{display:grid;place-items:center;height:100%;color:var(--ink-35)}
+.qbx-body .satcalc{top:16px}
+@media (max-width:820px){
+  .qbx-body{flex-direction:column;overflow-y:auto}
+  .qbx-left,.qbx-right{flex:none;overflow:visible;padding:22px 18px 28px}
+  .qbx-left{border-bottom:1.5px solid var(--line)}
+  .qbx-split{display:none}
+  .qbx-src{display:none}
+  .qbx-bot{grid-template-columns:auto 1fr auto}
+  .qbx-pos{text-align:center;font-size:13px}
+  .qbx-btn{padding:9px 15px}
+  .qbx-bank span{display:none}
+  .qbp-grid{grid-template-columns:repeat(5,1fr)}
+}
+
+@media (max-width:560px){.qb-art{width:44%;opacity:.4}.qb-stat,.qb-bar{max-width:100%}.qb-mix{max-width:100%}}
 </style>
 </head>
 <body>
@@ -1910,14 +2115,14 @@ body.exam-open #foot{display:none !important}
     <div class="sec-head"><div><span class="eyebrow">Sections</span><h2>Two sections, four modules</h2></div></div>
 
     <div class="grid g2">
-      <a class="card rv" href="#/materials">
+      <a class="card rv" href="#/qbank/math">
         <span class="icon y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h7M7.5 2.5v7M13.5 17.5h7M13.5 21l7-7M13.5 14l7 7M4 17h7"/></svg></span>
         <h4>Math</h4>
         <p>Algebra, advanced maths, problem solving and data analysis, and geometry and trigonometry. A calculator is allowed throughout.</p>
         <span class="meta"><span>Video lessons</span><span>Question bank</span></span>
       </a>
 
-      <a class="card rv" href="#/materials">
+      <a class="card rv" href="#/qbank/rw">
         <span class="icon y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.5A2.5 2.5 0 0 1 5.5 3H11v18H5.5A2.5 2.5 0 0 1 3 18.5z"/><path d="M21 5.5A2.5 2.5 0 0 0 18.5 3H13v18h5.5a2.5 2.5 0 0 0 2.5-2.5z"/></svg></span>
         <h4>Reading &amp; Writing</h4>
         <p>Short passages with one question each, across craft and structure, information and ideas, standard English conventions, and expression of ideas.</p>
@@ -1938,6 +2143,17 @@ body.exam-open #foot{display:none !important}
         <span class="meta"><span>Library</span></span>
       </a>
     </div>
+  </div>
+</section>
+
+<section class="sec tight">
+  <div class="wrap">
+    <div class="sec-head" style="margin-bottom:20px"><div><span class="eyebrow">Question bank</span>
+      <h2 style="font-size:clamp(24px,3.2vw,32px)">Practice by skill, check on the spot</h2>
+      <p style="margin-top:8px;color:var(--ink-60)">Questions sorted by the official SAT domains and skills, each marked easy, medium or hard.
+      Choose an answer, press Check, and the explanation opens right there.</p></div>
+      <a class="btn ghost" href="#/qbank">Open the question bank</a></div>
+    <div class="qb-cards" id="satqbcards"></div>
   </div>
 </section>
 
@@ -2231,6 +2447,8 @@ body.exam-open #foot{display:none !important}
 <div class="view" id="v-dashboard"><div class="wrap" style="padding:44px 0 80px"><div id="dashbody"></div></div></div>
 
 <div class="view" id="v-test"><div id="examhost"></div></div>
+
+<div class="view" id="v-qbank"><div id="qbhost"></div></div>
 
 </div>
 
@@ -2863,6 +3081,481 @@ function testDetail(meta) {
 var SPEC_UNUSED = 1;
 
 /* ---------- router ---------- */
+
+/* ============================================================
+   SAT QUESTION BANK — topics by domain, instant answer checks.
+   Data: Supabase table public.sat_qbank. Progress: this browser.
+   ============================================================ */
+var QB_SKILLS = {"math": [["Algebra", ["Linear equations in one variable", "Linear functions", "Linear equations in two variables", "Systems of two linear equations in two variables", "Linear inequalities in one or two variables"]], ["Advanced Math", ["Equivalent expressions", "Nonlinear equations in one variable and systems of equations in two variables", "Nonlinear functions"]], ["Problem-Solving and Data Analysis", ["Ratios, rates, proportional relationships, and units", "Percentages", "One-variable data: Distributions and measures of center and spread", "Two-variable data: Models and scatterplots", "Probability and conditional probability", "Inference from sample statistics and margin of error", "Evaluating statistical claims: Observational studies and experiments"]], ["Geometry and Trigonometry", ["Area and volume", "Lines, angles, and triangles", "Right triangles and trigonometry", "Circles"]]], "rw": [["Craft and Structure", ["Cross-Text Connections", "Text Structure and Purpose", "Words in Context"]], ["Expression of Ideas", ["Rhetorical Synthesis", "Transitions"]], ["Information and Ideas", ["Central Ideas and Details", "Command of Evidence", "Inferences"]], ["Standard English Conventions", ["Boundaries", "Form, Structure, and Sense"]]]};
+var QB_NAMES = { math: "Math", rw: "Reading & Writing" };
+var QB_KEY = "btl_qbank_v1";
+var QB = { meta: null, byId: {}, metaP: null, items: {}, sec: "math",
+  f: { lv: { easy: 1, medium: 1, hard: 1 }, done: "all", order: "normal", src: null }, pick: {}, run: null };
+var QBS = (function () { try { return JSON.parse(localStorage.getItem(QB_KEY)) || {}; } catch (e) { return {}; } })();
+function qbSave() { try { localStorage.setItem(QB_KEY, JSON.stringify(QBS)); } catch (e) {} }
+function qbSolved(id) { var s = QBS[id]; return !!(s && (s.st === "ok" || s.st === "retry")); }
+
+var QBI = {
+  bank: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3.5" width="18" height="15" rx="3"/><circle cx="12" cy="11" r="3.6"/><path d="M12 11h2.2M7 18.5v2M17 18.5v2"/></svg>',
+  chev: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>',
+  back: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>',
+  down: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>',
+  lv: '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="13" width="4" height="7" rx="1"/><rect x="10" y="9" width="4" height="11" rx="1"/><rect x="16" y="5" width="4" height="15" rx="1"/></svg>',
+  done: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.6 2.6L16 9.6"/></svg>',
+  shuf: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>',
+  filt: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h18l-7 8.5V19l-4 2v-8.5z"/></svg>',
+  mark: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg>',
+  grid: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg>',
+  calc: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><path d="M8.5 6.5h7M9 11h.01M12 11h.01M15 11h.01M9 14.5h.01M12 14.5h.01M15 14.5h.01M9 18h.01M12 18h.01M15 18h.01"/></svg>',
+  tick: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+  cross: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+  dotc: '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/></svg>'
+};
+var QB_ART = {
+  rw: '<div class="qb-art"><svg viewBox="0 0 300 260" preserveAspectRatio="xMaxYMid slice" fill="none">' +
+    '<circle cx="230" cy="70" r="95" fill="#FFC530" opacity=".13"/>' +
+    '<path d="M70 200c40-18 80-18 115 0V78c-35-18-75-18-115 0z" fill="#fff" opacity=".96"/>' +
+    '<path d="M185 200c35-18 75-18 115 0V78c-40-18-80-18-115 0z" fill="#EEF2F6"/>' +
+    '<path d="M88 104c22-8 48-8 78 0M88 124c22-8 48-8 78 0M88 144c22-8 44-8 64 0M88 164c22-8 48-8 78 0" stroke="#8E9098" stroke-width="5" stroke-linecap="round"/>' +
+    '<path d="M203 104c28-9 52-9 78 0M203 124c28-9 52-9 78 0M203 144c20-6 38-6 52 0" stroke="#29C5F6" stroke-width="5" stroke-linecap="round"/>' +
+    '<path d="M246 26l38 8-70 92-24 8 4-26z" fill="#FFC530"/><path d="M190 134l4-26 20 18z" fill="#0A0A0B" opacity=".55"/>' +
+    '<circle cx="62" cy="58" r="5" fill="#FFC530"/><path d="M118 34l5 10 10 5-10 5-5 10-5-10-10-5 10-5z" fill="#fff" opacity=".7"/></svg></div>',
+  math: '<div class="qb-art"><svg viewBox="0 0 300 260" preserveAspectRatio="xMaxYMid slice" fill="none">' +
+    '<circle cx="225" cy="150" r="110" fill="#fff" opacity=".1"/>' +
+    '<path d="M120 230L270 60v170z" fill="#0A0A0B" opacity=".18"/><path d="M110 220L260 50v170z" fill="#fff" opacity=".92"/>' +
+    '<path d="M200 220v-55h55" stroke="#29C5F6" stroke-width="5"/>' +
+    '<path d="M138 205l100-114" stroke="#0A7CA5" stroke-width="3" stroke-dasharray="7 7"/>' +
+    '<circle cx="132" cy="96" r="44" stroke="#fff" stroke-width="5" opacity=".75"/><path d="M132 52v88M88 96h88" stroke="#fff" stroke-width="3" opacity=".55"/>' +
+    '<path d="M70 168l6 13 13 6-13 6-6 13-6-13-13-6 13-6z" fill="#FFC530"/><path d="M262 22l4 9 9 4-9 4-4 9-4-9-9-4 9-4z" fill="#fff"/>' +
+    '<text x="148" y="200" font-family="Bricolage Grotesque,sans-serif" font-weight="800" font-size="30" fill="#0A7CA5">x²</text></svg></div>'
+};
+
+function qbEsc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;"); }
+function qbN(n) { return Number(n).toLocaleString("en-US"); }
+
+function qbLoadMeta() {
+  if (QB.meta) return Promise.resolve(QB.meta);
+  if (QB.metaP) return QB.metaP;
+  QB.metaP = sbClient().then(function (c) {
+    if (!c) throw new Error("Supabase is not configured");
+    var all = [];
+    function page(from) {
+      return c.from("sat_qbank").select("id,section,domain,skill,difficulty,source,ord").order("ord").range(from, from + 999)
+        .then(function (r) {
+          if (r.error) throw r.error;
+          all = all.concat(r.data || []);
+          return (r.data || []).length === 1000 ? page(from + 1000) : all;
+        });
+    }
+    return page(0);
+  }).then(function (rows) {
+    QB.meta = rows; QB.byId = {};
+    rows.forEach(function (r) { QB.byId[r.id] = r; });
+    return rows;
+  }, function (e) { QB.metaP = null; throw e; });
+  return QB.metaP;
+}
+function qbLoadItems(ids) {
+  var need = ids.filter(function (id) { return !QB.items[id]; });
+  if (!need.length) return Promise.resolve();
+  return sbClient().then(function (c) {
+    var jobs = [];
+    for (var i = 0; i < need.length; i += 40) (function (ch) {
+      jobs.push(c.from("sat_qbank").select("id,item").in("id", ch).then(function (r) {
+        if (r.error) throw r.error;
+        (r.data || []).forEach(function (x) { QB.items[x.id] = x.item; });
+      }));
+    })(need.slice(i, i + 40));
+    return Promise.all(jobs);
+  });
+}
+function qbErr(host, e) {
+  if (!host) return;
+  host.innerHTML = '<div class="qb-err"><h4>The question bank could not be loaded</h4><p>Check your connection and try again.' +
+    (e && e.message ? ' <span style="color:var(--ink-35)">(' + qbEsc(e.message) + ')</span>' : '') + '</p>' +
+    '<button class="qb-start" style="margin-top:16px" data-qb="retry">Try again</button></div>';
+}
+
+/* ---------- routing ---------- */
+function openQbank(parts) {
+  var host = document.getElementById("qbhost");
+  var sec = parts[0] === "math" || parts[0] === "rw" ? parts[0] : null;
+  if (!sec) return qbLanding(host);
+  QB.sec = sec;
+  if (parts[1] === "practice") return qbPractice(host, sec);
+  qbTopics(host, sec);
+}
+
+/* ---------- landing: two section cards ---------- */
+function qbCard(sec) {
+  var tot = null, done = 0, pct = 0, mix = "";
+  if (QB.meta) {
+    var rows = QB.meta.filter(function (r) { return r.section === sec; });
+    tot = rows.length;
+    done = rows.filter(function (r) { return qbSolved(r.id); }).length;
+    pct = tot ? Math.round(done / tot * 100) : 0;
+    var c = { easy: 0, medium: 0, hard: 0 };
+    rows.forEach(function (r) { c[r.difficulty]++; });
+    mix = '<div class="qb-mix"><span>' + c.easy + ' easy</span><span>' + c.medium + ' medium</span><span>' + c.hard + ' hard</span></div>';
+  }
+  return '<a class="qb-card ' + sec + '" href="#/qbank/' + sec + '">' + QB_ART[sec] + '<h3>' + qbEsc(QB_NAMES[sec]) + '</h3>' +
+    '<div class="qb-stat"><span>' + (tot == null ? "Loading…" : qbN(done) + ' of ' + qbN(tot) + ' solved') + '</span><b>' + pct + '%</b></div>' +
+    '<div class="qb-bar"><i style="width:' + pct + '%"></i></div>' + mix +
+    '<span class="qb-open">Open ' + QBI.chev + '</span></a>';
+}
+function qbCards() { return qbCard("rw") + qbCard("math"); }
+function qbFillCards(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.innerHTML = qbCards();
+  qbLoadMeta().then(function () { var e2 = document.getElementById(id); if (e2) e2.innerHTML = qbCards(); }, function () {});
+}
+function qbLanding(host) {
+  host.innerHTML = '<div class="phead"><div class="wrap"><div class="crumb"><a href="#/home">Home</a> <span>&rarr;</span> <a href="#/sat">SAT</a> <span>&rarr;</span> <span>Question bank</span></div>' +
+    '<h1 class="qb-h1">' + QBI.bank + 'Question Bank</h1>' +
+    '<p class="lede">Every question is tagged with the official SAT domain, skill and difficulty. Pick the topics you want, ' +
+    'answer, and check yourself on the spot &mdash; the explanation opens right under the question.</p></div></div>' +
+    '<div class="wrap qb-page"><div class="qb-cards" id="qbcards"></div></div>';
+  qbFillCards("qbcards");
+}
+
+/* ---------- topic list ---------- */
+function qbFiltered(sec) {
+  var f = QB.f;
+  return (QB.meta || []).filter(function (r) {
+    if (r.section !== sec || !f.lv[r.difficulty]) return false;
+    if (f.src && !f.src[r.source]) return false;
+    var s = QBS[r.id] || {};
+    if (f.done === "unanswered" && s.st) return false;
+    if (f.done === "answered" && !s.st) return false;
+    if (f.done === "incorrect" && s.st !== "bad") return false;
+    if (f.done === "review" && !s.rv) return false;
+    return true;
+  });
+}
+function qbTopics(host, sec) {
+  host.innerHTML = '<div class="phead"><div class="wrap qb-narrow"><div class="crumb"><a href="#/sat">SAT</a> <span>&rarr;</span> <a href="#/qbank">Question bank</a> <span>&rarr;</span> <span>' + QB_NAMES[sec] + '</span></div>' +
+    '<div class="qb-top"><h1>' + QB_NAMES[sec] + '</h1><a class="qb-ddbtn" href="#/qbank/' + (sec === "math" ? "rw" : "math") + '">Switch to ' + QB_NAMES[sec === "math" ? "rw" : "math"] + '</a></div>' +
+    '<div class="qb-filters" id="qbfilters"></div></div></div>' +
+    '<div class="wrap qb-narrow qb-page" style="padding-top:22px"><div id="qball"></div><div class="qb-list" id="qblist"><div class="qb-wait">Loading questions…</div></div></div>';
+  qbLoadMeta().then(qbDrawTopics, function (e) { qbErr(document.getElementById("qblist"), e); });
+}
+function qbDD(key, icon, label, act, menu) {
+  return '<div class="qb-dd" data-qbdd="' + key + '"><button class="qb-ddbtn' + (act ? ' act' : '') + '" data-qb="dd">' + icon + label + QBI.down + '</button>' +
+    '<div class="qb-ddmenu">' + menu + '</div></div>';
+}
+function qbDrawFilters() {
+  var f = QB.f, el = document.getElementById("qbfilters");
+  if (!el) return;
+  var lvAll = f.lv.easy && f.lv.medium && f.lv.hard;
+  var lvMenu = ["easy", "medium", "hard"].map(function (l) {
+    return '<label><input type="checkbox" data-qblv="' + l + '"' + (f.lv[l] ? ' checked' : '') + '><span class="qb-dot ' + l + '"></span>' + l.charAt(0).toUpperCase() + l.slice(1) + '</label>';
+  }).join("");
+  var dn = [["all", "All questions"], ["unanswered", "Not answered yet"], ["answered", "Answered"], ["incorrect", "Answered incorrectly"], ["review", "Marked for review"]];
+  var dnMenu = dn.map(function (d) { return '<label><input type="radio" name="qbdone" data-qbdone="' + d[0] + '"' + (f.done === d[0] ? ' checked' : '') + '>' + d[1] + '</label>'; }).join("");
+  var odMenu = [["normal", "Normal"], ["random", "Random"]].map(function (d) { return '<label><input type="radio" name="qbord" data-qbord="' + d[0] + '"' + (f.order === d[0] ? ' checked' : '') + '>' + d[1] + '</label>'; }).join("");
+  var srcs = [];
+  (QB.meta || []).forEach(function (r) { if (r.section === QB.sec && srcs.indexOf(r.source) < 0) srcs.push(r.source); });
+  var srMenu = srcs.map(function (s) { return '<label><input type="checkbox" data-qbsrc="' + qbEsc(s) + '"' + (!f.src || f.src[s] ? ' checked' : '') + '>' + qbEsc(s) + '</label>'; }).join("");
+  el.innerHTML =
+    qbDD("lv", QBI.lv, lvAll ? "Difficulty" : ["easy", "medium", "hard"].filter(function (l) { return f.lv[l]; }).map(function (l) { return l.charAt(0).toUpperCase() + l.slice(1); }).join(", ") || "Difficulty", !lvAll, lvMenu) +
+    qbDD("done", QBI.done, f.done === "all" ? "Completed" : dn.filter(function (d) { return d[0] === f.done; })[0][1], f.done !== "all", dnMenu) +
+    qbDD("ord", QBI.shuf, "Order: " + (f.order === "random" ? "Random" : "Normal"), f.order !== "normal", odMenu) +
+    qbDD("src", QBI.filt, f.src ? "Sources (" + Object.keys(f.src).length + ")" : "Filters", !!f.src, srMenu);
+}
+function qbDrawTopics() {
+  var sec = QB.sec, list = document.getElementById("qblist");
+  if (!list) return;
+  qbDrawFilters();
+  var rows = qbFiltered(sec), by = {};
+  rows.forEach(function (r) { (by[r.skill] = by[r.skill] || []).push(r); });
+  var html = '<div class="qb-lhead"><span>Topic</span><span>Progress</span></div>';
+  QB_SKILLS[sec].forEach(function (d, di) {
+    var dn = 0;
+    d[1].forEach(function (sk) { dn += (by[sk] || []).length; });
+    html += '<div class="qb-dom"><h4 data-qbdom="' + di + '">' + qbEsc(d[0]) + ' <small>' + dn + ' questions</small></h4>';
+    d[1].forEach(function (sk, si) {
+      var rs = by[sk] || [], tot = rs.length;
+      var done = rs.filter(function (r) { return qbSolved(r.id); }).length;
+      html += '<div class="qb-row' + (tot ? '' : ' off') + '"><label><input type="checkbox" data-qbsk="' + di + '.' + si + '"' +
+        (QB.pick[sk] ? ' checked' : '') + (tot ? '' : ' disabled') + '><span>' + qbEsc(sk) + '</span></label>' +
+        '<span class="qb-prog"><span class="b"><i style="width:' + (tot ? Math.round(done / tot * 100) : 0) + '%"></i></span><em>' + done + '/' + tot + '</em></span></div>';
+    });
+    html += '</div>';
+  });
+  list.innerHTML = html;
+  qbDrawAll(rows);
+}
+function qbPicked(sec) {
+  var out = [];
+  QB_SKILLS[sec].forEach(function (d) { d[1].forEach(function (sk) { if (QB.pick[sk]) out.push(sk); }); });
+  return out;
+}
+function qbDrawAll(rows) {
+  var el = document.getElementById("qball"), sec = QB.sec;
+  if (!el) return;
+  rows = rows || qbFiltered(sec);
+  var picked = qbPicked(sec), nsk = 0;
+  QB_SKILLS[sec].forEach(function (d) { nsk += d[1].length; });
+  var n = picked.length ? rows.filter(function (r) { return QB.pick[r.skill]; }).length : rows.length;
+  el.innerHTML = '<div class="qb-all"><div><b>' + (picked.length ? 'Practice ' + picked.length + ' selected topic' + (picked.length > 1 ? 's' : '') : 'Practice all topics') + '</b>' +
+    '<small>' + (picked.length ? qbN(n) + ' questions match your filters.' : 'Start practicing all ' + nsk + ' skills in ' + QB_NAMES[sec] + ' · ' + qbN(n) + ' questions.') + '</small></div>' +
+    '<div style="display:flex;gap:8px;flex-wrap:wrap">' + (picked.length ? '<button class="qb-ddbtn" data-qb="clear">Clear</button>' : '') +
+    '<button class="qb-start" data-qb="start"' + (n ? '' : ' disabled') + '>Start practice</button></div></div>';
+}
+function qbStart() {
+  var sec = QB.sec, rows = qbFiltered(sec), picked = qbPicked(sec);
+  if (picked.length) rows = rows.filter(function (r) { return QB.pick[r.skill]; });
+  if (!rows.length) return;
+  var order = {}, k = 0, lvn = { easy: 0, medium: 1, hard: 2 };
+  QB_SKILLS[sec].forEach(function (d) { d[1].forEach(function (sk) { order[sk] = k++; }); });
+  rows = rows.slice();
+  if (QB.f.order === "random") {
+    for (var i = rows.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = rows[i]; rows[i] = rows[j]; rows[j] = t; }
+  } else rows.sort(function (a, b) { return order[a.skill] - order[b.skill] || lvn[a.difficulty] - lvn[b.difficulty] || a.ord - b.ord; });
+  QB.run = { sec: sec, ids: rows.map(function (r) { return r.id; }), i: 0, sel: {}, tried: {}, fin: {}, out: {}, spr: {}, panel: false, group: false,
+    title: picked.length === 1 ? picked[0] : picked.length ? picked.length + " topics" : "All topics" };
+  var target = "#/qbank/" + sec + "/practice";
+  if (location.hash === target) go(); else location.hash = target;
+}
+
+/* ---------- practice screen ---------- */
+function qbPractice(host, sec) {
+  if (!QB.run || QB.run.sec !== sec) {
+    host.innerHTML = '<div class="wrap qb-page"><div class="qb-wait">Loading questions…</div></div>';
+    qbLoadMeta().then(function () { QB.pick = {}; qbStart(); }, function (e) { qbErr(host.firstChild, e); });
+    return;
+  }
+  document.body.classList.add("qb-lock");
+  var R = QB.run;
+  host.innerHTML = '<div class="qbx" id="qbx">' +
+    '<div class="qbx-top"><button class="qbx-back" data-qb="exit">' + QBI.back + 'Question Bank</button>' +
+    '<div class="qbx-title">' + QB_NAMES[sec] + ' <span>· ' + qbEsc(R.title) + '</span></div>' +
+    (sec === "math" ? '<button class="qbx-tool" data-qb="calc">' + QBI.calc + 'Calculator</button>' : '') + '</div>' +
+    '<div class="qbx-body" id="qbxbody"><div class="qbx-wait">Loading…</div></div>' +
+    '<div class="qbx-bot"><button class="qbx-bank" data-qb="panel">' + QBI.grid + '<span>Question Bank</span></button>' +
+    '<div class="qbx-pos" id="qbxpos"></div>' +
+    '<div class="qbx-nav"><button class="qbx-btn" data-qb="prev">Back</button><button class="qbx-btn pri" data-qb="next">Next</button></div></div></div>';
+  qbLoadItems(R.ids.slice(0, 12)).then(function () {
+    qbDrawQ();
+    var rest = R.ids.slice(12), step = 120;
+    (function more(i) { if (i < rest.length && QB.run === R) qbLoadItems(rest.slice(i, i + step)).then(function () { more(i + step); }, function () {}); })(0);
+  }, function (e) { qbErr(document.getElementById("qbxbody"), e); });
+}
+function qbFb(it, kind) {
+  var L = "ABCD", h = "";
+  if (kind === "bad") {
+    return '<div class="qbx-fb bad"><h5>' + QBI.cross.replace("<svg", '<svg width="16" height="16"') + 'Not quite</h5>' +
+      '<p>That isn’t the answer. Strike out what you can rule out and try again, or <button class="qbx-link" data-qb="show">show the answer</button>.</p></div>';
+  }
+  var ok = kind === "ok";
+  h += '<div class="qbx-fb ' + (ok ? 'ok' : '') + '"><h5>' + (ok ? QBI.tick.replace("<svg", '<svg width="16" height="16"') + 'Correct' : 'Answer') + '</h5>';
+  h += '<p><b>' + (it.type === "spr" ? 'Correct answer: ' + qbEsc((it.accept && it.accept.length > 1) ? it.accept.join(", ") : it.ans) : 'Choice ' + it.ans + ' is the best answer.') + '</b> ' + (it.why || '') + '</p>';
+  if (it.wrong && it.type !== "spr") {
+    var ws = L.split("").filter(function (x) { return it.wrong[x]; });
+    if (ws.length) h += '<ul>' + ws.map(function (x) { return '<li><b>Choice ' + x + '</b> is incorrect. ' + it.wrong[x] + '</li>'; }).join("") + '</ul>';
+  }
+  return h + '</div>';
+}
+function qbDrawQ() {
+  var R = QB.run, body = document.getElementById("qbxbody");
+  if (!R || !body) return;
+  var id = R.ids[R.i], it = QB.items[id], m = QB.byId[id] || {};
+  document.getElementById("qbxpos").textContent = "Question " + (R.i + 1) + " of " + R.ids.length;
+  document.querySelector('[data-qb="prev"]').disabled = R.i === 0;
+  var nx = document.querySelector('[data-qb="next"]');
+  nx.textContent = R.i === R.ids.length - 1 ? "Finish" : "Next";
+  if (!it) {
+    body.innerHTML = '<div class="qbx-wait">Loading…</div>';
+    qbLoadItems(R.ids.slice(R.i, R.i + 12)).then(function () { if (QB.run === R && R.ids[R.i] === id) qbDrawQ(); }, function (e) { qbErr(body, e); });
+    return;
+  }
+  var st = QBS[id] || {}, fin = R.fin[id], tried = R.tried[id] || [], out = R.out[id] || {}, sel = R.sel[id];
+  var isSpr = it.type === "spr" || !it.opts || !it.opts.length;
+  var single = R.sec === "math" || !it.stim;
+  var head = '<div class="qbx-qhead"><span class="qbx-qn">' + (R.i + 1) + '</span>' +
+    '<button class="qbx-mark' + (st.rv ? ' on' : '') + '" data-qb="mark">' + QBI.mark + 'Mark for Review</button>' +
+    '<span class="qbx-lvl lv-' + m.difficulty + '">' + (m.difficulty || '') + '</span>' +
+    '<span class="qbx-src">' + qbEsc(m.skill || '') + '</span></div>';
+  var q = head;
+  if (single && it.stim) q += '<div class="qbx-mstim">' + it.stim + '</div>';
+  q += '<div class="qbx-qtext">' + (it.text || '') + '</div>';
+  if (isSpr) {
+    var v = R.spr[id] != null ? R.spr[id] : "";
+    var cls = fin === "ok" ? " ok" : (fin === "shown" || tried.length) && fin !== "ok" ? " bad" : "";
+    q += '<div class="qbx-spr"><input id="qbspr" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="Your answer" value="' + qbEsc(v) + '"' +
+      (fin ? ' disabled' : '') + ' class="' + cls.trim() + '">' + (fin ? '' : '<button class="qbx-check" data-qb="check">Check</button>') +
+      '<span class="qbx-sprnote">Enter a number, decimal or fraction such as 3.5 or 7/2.</span></div>';
+  } else {
+    q += '<div class="qbx-opts">';
+    it.opts.forEach(function (o, k) {
+      var L = "ABCD"[k], c = "qbx-opt";
+      if (fin && L === it.ans) c += " ok";
+      else if (tried.indexOf(L) >= 0) c += " bad";
+      else if (!fin && sel === L) c += " sel";
+      if (out[L]) c += " out";
+      if (fin) c += " lock";
+      q += '<div class="qbx-row"><div class="' + c + '" role="button" tabindex="0" data-qbopt="' + L + '"><span class="qbx-letter">' + L + '</span>' +
+        '<span class="qbx-otext">' + o + '</span>' + (!fin && sel === L && tried.indexOf(L) < 0 ? '<button class="qbx-check" data-qb="check">Check</button>' : '') + '</div>' +
+        '<button class="qbx-strike' + (out[L] ? ' on' : '') + '" data-qbout="' + L + '" aria-label="Cross out ' + L + '">' + L + '</button></div>';
+    });
+    q += '</div>';
+  }
+  if (fin === "ok") q += qbFb(it, "ok");
+  else if (fin === "shown") q += qbFb(it, "shown");
+  else if (tried.length) q += qbFb(it, "bad");
+  var panel = R.panel ? qbPanel() : "";
+  var calc = document.getElementById("satcalc");
+  body.className = "qbx-body" + (single ? " single" : "");
+  body.innerHTML = (single ? '' : '<div class="qbx-left"><div class="qbx-stim">' + it.stim + '</div></div><div class="qbx-split"></div>') +
+    '<div class="qbx-right"><div class="qbx-in">' + q + '</div></div>' + panel;
+  if (calc) body.appendChild(calc);
+  var sp = document.getElementById("qbspr");
+  if (sp && !fin) sp.addEventListener("input", function () { R.spr[id] = sp.value; });
+}
+function qbPanel() {
+  var R = QB.run, key = function (r) { var s = QBS[r] || {}; return s.st === "ok" ? 0 : s.st === "retry" ? 1 : s.st === "bad" ? 2 : 3; };
+  var tile = function (id, n) {
+    var m = QB.byId[id] || {}, s = QBS[id] || {};
+    var ic = s.st === "ok" ? '<i class="qbp-ic ok">' + QBI.tick + '</i>' : s.st === "bad" ? '<i class="qbp-ic bad">' + QBI.cross + '</i>' : s.st === "retry" ? '<i class="qbp-ic retry">' + QBI.dotc + '</i>' : '';
+    return '<button class="qbp-q ' + (m.difficulty || 'medium') + (n === R.i ? ' cur' : '') + '" data-qbgo="' + n + '">' + (n + 1) + ic +
+      (s.rv ? '<svg class="qbp-rv" viewBox="0 0 24 24" fill="currentColor"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg>' : '') + '</button>';
+  };
+  var grid = "";
+  if (R.group) {
+    var names = ["Correct", "Correct after a retry", "Incorrect", "Not answered"], groups = [[], [], [], []];
+    R.ids.forEach(function (id, n) { groups[key(id)].push([id, n]); });
+    groups.forEach(function (g, gi) { if (g.length) grid += '<div class="qbp-sub">' + names[gi] + ' · ' + g.length + '</div>' + g.map(function (x) { return tile(x[0], x[1]); }).join(""); });
+  } else grid = R.ids.map(tile).join("");
+  return '<div class="qbp" id="qbp"><div class="qbp-head"><b>Question Bank</b><button class="qbp-grp' + (R.group ? ' on' : '') + '" data-qb="group">' + QBI.grid + 'Group Answered</button>' +
+    '<button class="qbp-x" data-qb="panel" aria-label="Close">&times;</button></div>' +
+    '<div class="qbp-key"><span><i class="qbp-ic ok">' + QBI.tick + '</i>Correct</span><span><i class="qbp-ic bad">' + QBI.cross + '</i>Incorrect</span>' +
+    '<span><svg class="qbp-rv" viewBox="0 0 24 24" fill="currentColor"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg>For Review</span><span><i class="qbp-ic retry">' + QBI.dotc + '</i>Correct (incorrect attempts)</span></div>' +
+    '<div class="qbp-key" style="padding-top:0"><span><span class="qb-dot easy"></span>Easy</span><span><span class="qb-dot medium"></span>Medium</span><span><span class="qb-dot hard"></span>Hard</span></div>' +
+    '<div class="qbp-grid">' + grid + '</div></div>';
+}
+function qbCheck() {
+  var R = QB.run, id = R.ids[R.i], it = QB.items[id];
+  if (!it || R.fin[id]) return;
+  var isSpr = it.type === "spr" || !it.opts || !it.opts.length;
+  var got = isSpr ? (document.getElementById("qbspr") || {}).value : R.sel[id];
+  if (got == null || String(got).trim() === "") return;
+  if (isSpr) R.spr[id] = got;
+  var tried = R.tried[id] = R.tried[id] || [];
+  var s = QBS[id] = QBS[id] || {};
+  if (satIsRight(it, isSpr ? String(got).trim() : got)) {
+    R.fin[id] = "ok"; s.st = tried.length ? "retry" : "ok";
+  } else {
+    tried.push(isSpr ? String(got).trim() : got); s.st = "bad"; R.sel[id] = null;
+  }
+  s.t = Date.now(); qbSave(); qbDrawQ();
+}
+function qbGo(n) {
+  var R = QB.run;
+  if (!R) return;
+  if (n >= R.ids.length) { location.hash = "#/qbank/" + R.sec; return; }
+  R.i = Math.max(0, n); qbDrawQ();
+  var r = document.querySelector(".qbx-right"); if (r) r.scrollTop = 0;
+  var l = document.querySelector(".qbx-left"); if (l) l.scrollTop = 0;
+}
+function qbCalc() {
+  var w = document.getElementById("satcalc"), btn = document.querySelector('[data-qb="calc"]');
+  if (w) { w.remove(); if (btn) btn.classList.remove("on"); return; }
+  if (btn) btn.classList.add("on");
+  w = document.createElement("div");
+  w.className = "satcalc"; w.id = "satcalc";
+  w.innerHTML = '<div class="satcalc-bar"><b>Graphing Calculator</b><span class="satcalc-grip">⁙</span>' +
+    '<button class="satcalc-x" data-qb="calc">&times;</button></div><div class="satcalc-body" id="desmoshost"><div class="satcalc-load">Loading Desmos…</div></div>';
+  document.getElementById("qbxbody").appendChild(w);
+  if (window.satDragWindow) satDragWindow(w, w.querySelector(".satcalc-bar"));
+  function mount() {
+    var h = document.getElementById("desmoshost");
+    if (!h) return;
+    h.innerHTML = "";
+    try { Desmos.GraphingCalculator(h, { keypad: true, expressions: true, settingsMenu: false, zoomButtons: true, border: false }); }
+    catch (e) { h.innerHTML = calcFallback(); }
+  }
+  if (window.Desmos) return mount();
+  var sc = document.createElement("script");
+  sc.src = "https://www.desmos.com/api/v1.11/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6";
+  sc.onload = mount;
+  sc.onerror = function () { var h = document.getElementById("desmoshost"); if (h) h.innerHTML = calcFallback(); };
+  document.head.appendChild(sc);
+}
+
+/* ---------- events ---------- */
+document.addEventListener("click", function (e) {
+  var host = document.getElementById("qbhost");
+  var dd = e.target.closest(".qb-dd");
+  [].forEach.call(document.querySelectorAll(".qb-dd.open"), function (x) { if (x !== dd) x.classList.remove("open"); });
+  if (!host || !host.contains(e.target)) return;
+  var a = e.target.closest("[data-qb]"), R = QB.run;
+  if (a) {
+    var k = a.dataset.qb;
+    if (k === "dd") { a.parentNode.classList.toggle("open"); return; }
+    if (k === "retry") { QB.metaP = null; go(); return; }
+    if (k === "start") { qbStart(); return; }
+    if (k === "clear") { QB.pick = {}; qbDrawTopics(); return; }
+    if (k === "exit") { location.hash = "#/qbank/" + QB.sec; return; }
+    if (k === "calc") { qbCalc(); return; }
+    if (!R) return;
+    var id = R.ids[R.i];
+    if (k === "check") { e.stopPropagation(); qbCheck(); return; }
+    if (k === "show") { R.fin[id] = "shown"; var s = QBS[id] = QBS[id] || {}; if (!s.st) s.st = "bad"; qbSave(); qbDrawQ(); return; }
+    if (k === "mark") { var s2 = QBS[id] = QBS[id] || {}; s2.rv = !s2.rv; if (!s2.rv) delete s2.rv; qbSave(); qbDrawQ(); return; }
+    if (k === "prev") { qbGo(R.i - 1); return; }
+    if (k === "next") { qbGo(R.i + 1); return; }
+    if (k === "panel") { R.panel = !R.panel; document.querySelector('[data-qb="panel"]').classList.toggle("on", R.panel); qbDrawQ(); return; }
+    if (k === "group") { R.group = !R.group; qbDrawQ(); return; }
+  }
+  var g = e.target.closest("[data-qbgo]");
+  if (g && R) { R.panel = false; document.querySelector('.qbx-bank').classList.remove("on"); qbGo(+g.dataset.qbgo); return; }
+  var so = e.target.closest("[data-qbout]");
+  if (so && R) { var id2 = R.ids[R.i], o = R.out[id2] = R.out[id2] || {}, L = so.dataset.qbout; o[L] = !o[L]; if (o[L] && R.sel[id2] === L) R.sel[id2] = null; qbDrawQ(); return; }
+  var op = e.target.closest("[data-qbopt]");
+  if (op && R) {
+    var id3 = R.ids[R.i], L3 = op.dataset.qbopt;
+    if (R.fin[id3] || (R.tried[id3] || []).indexOf(L3) >= 0) return;
+    R.sel[id3] = L3; if (R.out[id3]) R.out[id3][L3] = false; qbDrawQ(); return;
+  }
+  var dm = e.target.closest("[data-qbdom]");
+  if (dm) {
+    var d = QB_SKILLS[QB.sec][+dm.dataset.qbdom], allOn = d[1].every(function (sk) { return QB.pick[sk]; });
+    d[1].forEach(function (sk) { QB.pick[sk] = !allOn; });
+    qbDrawTopics();
+  }
+});
+document.addEventListener("change", function (e) {
+  var t = e.target, host = document.getElementById("qbhost");
+  if (!host || !host.contains(t)) return;
+  var f = QB.f;
+  if (t.dataset.qbsk) { var p = t.dataset.qbsk.split("."), sk = QB_SKILLS[QB.sec][+p[0]][1][+p[1]]; QB.pick[sk] = t.checked; qbDrawAll(); return; }
+  if (t.dataset.qblv) { f.lv[t.dataset.qblv] = t.checked ? 1 : 0; }
+  else if (t.dataset.qbdone) f.done = t.dataset.qbdone;
+  else if (t.dataset.qbord) f.order = t.dataset.qbord;
+  else if (t.dataset.qbsrc != null) {
+    var all = [];
+    (QB.meta || []).forEach(function (r) { if (r.section === QB.sec && all.indexOf(r.source) < 0) all.push(r.source); });
+    var cur = f.src || all.reduce(function (o, s) { o[s] = 1; return o; }, {});
+    if (t.checked) cur[t.dataset.qbsrc] = 1; else delete cur[t.dataset.qbsrc];
+    f.src = Object.keys(cur).length === all.length ? null : cur;
+  } else return;
+  var open = t.closest(".qb-dd") && t.closest(".qb-dd").dataset.qbdd;
+  qbDrawTopics();
+  if (open) { var x = document.querySelector('[data-qbdd="' + open + '"]'); if (x) x.classList.add("open"); }
+});
+document.addEventListener("keydown", function (e) {
+  var R = QB.run;
+  if (!R || !document.getElementById("qbx")) return;
+  var typing = e.target.tagName === "INPUT";
+  if (e.key === "Enter" && (typing || R.sel[R.ids[R.i]])) { e.preventDefault(); qbCheck(); return; }
+  if (e.key === " " && e.target.dataset && e.target.dataset.qbopt) { e.preventDefault(); e.target.click(); return; }
+  if (typing) return;
+  if (e.key === "ArrowRight") qbGo(R.i + 1);
+  else if (e.key === "ArrowLeft") qbGo(R.i - 1);
+  else if (/^[a-dA-D]$/.test(e.key)) { var o = document.querySelector('[data-qbopt="' + e.key.toUpperCase() + '"]'); if (o) o.click(); }
+});
+
 function go() {
   var h = (location.hash || "#/home").replace(/^#\//, "");
   var parts = h.split("/"), page = parts[0] || "home";
@@ -2871,11 +3564,14 @@ function go() {
   var view = document.getElementById("v-" + page);
   view.classList.add("on");
   [].forEach.call(document.querySelectorAll("[data-nav]"), function (a) {
-    a.classList.toggle("on", a.dataset.nav === page || (page === "test" && a.dataset.nav === "tests"));
+    a.classList.toggle("on", a.dataset.nav === page || (page === "test" && a.dataset.nav === "tests") || (page === "qbank" && a.dataset.nav === "sat"));
   });
   if (page !== "test") { var eh = document.getElementById("examhost"); if (eh) eh.innerHTML = ""; stopClock(); if (window.satStopClock) satStopClock(); }
   document.body.classList.toggle("exam-open", page === "test" && !SUBMITTED && !SSUB);
+  document.body.classList.remove("qb-lock");
+  if (page !== "qbank") { var qh = document.getElementById("qbhost"); if (qh) qh.innerHTML = ""; }
   if (page === "test") openTest(parts[1] || "ielts-reading-1");
+  else if (page === "qbank") openQbank(parts.slice(1));
   else if (page === "material") openMaterial(parts[1] || "");
   else if (page === "dashboard") drawDash();
   else if (page === "admin") drawAdmin();
@@ -2886,8 +3582,9 @@ function go() {
     if (page === "tests" && APPLY_TEST_FILTER) APPLY_TEST_FILTER(parts[1] || "all");
     if (page === "materials" && APPLY_MAT_FILTER) APPLY_MAT_FILTER(parts[1] || "all");
   }
+  if (page === "sat") qbFillCards("satqbcards");
   reveals(view); rails(view); counters(view);
-  document.title = (page === "home" ? "Born to Learn — IELTS, SAT and English" : page.charAt(0).toUpperCase() + page.slice(1) + " — Born to Learn");
+  document.title = (page === "home" ? "Born to Learn — IELTS, SAT and English" : page === "qbank" ? "SAT Question Bank — Born to Learn" : page.charAt(0).toUpperCase() + page.slice(1) + " — Born to Learn");
   window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
 }
 window.addEventListener("hashchange", go);
